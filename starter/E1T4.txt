@@ -1,5 +1,29 @@
 Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
 
+# Poor practice 2
+
+EC2-S3 Communication via Public Internet: The current design allows the EC2 instance to communicate with S3 through the public internet, which increases the risk of data exposure and attacks.
+A more secure setup would use a VPC endpoint for S3 access, allowing the communication to occur entirely within AWS’s private network, enhancing both security and performance.
+
 # Poor practice 1
 
+- The Web Service Instance sits behind the Application Load Balancer.
+- The load balancer communicates with the web service on port 5000.
+- The web service does not need an ingress on port 80, yet its security group has port 80 open to the entire Internet.
+-- Action: Remove the ingress for port 80.
+
+- Limit the ingress for port 5000 to the load balancer security group.
+-- Action: Remove the ingress rule allowing all traffic from all protocols and port ranges from the Internet.
+
+- The web service has an ingress on port 22 for SSH, which is exposed to the Internet.
+-- Action: Eliminate this ingress by using the immutable instance strategy—provision a new instance for changes and terminate the existing one once the new instance is running.
+
+- Remove the Elastic IP assigned to the web service instance.
+- To enhance security, redeploy the web service in a private subnet since only the load balancer within the VPC needs access.
+- There has been no documented need for the web service to establish outbound connections.
+-- Action: Eliminate the egress rule that allows access to the Internet on all ports from all protocols.
+
 # Poor practice 2
+
+- The default security group allows all traffic using all protocols on all ports.
+-- Action: Restrict all inbound and outbound traffic in the default security group. This will enforce the least-privilege principle for access configuration.
