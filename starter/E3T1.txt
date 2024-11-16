@@ -1,3 +1,23 @@
 # Describe GuardDuty findings that were detected related to the brute force attack
+GuardDuty has identified that the Attack instance was conducting an SSH brute-force attack, while the Web Service instance was targeted in this attack.
+
 
 # Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+Low Severity: Port Probe on Unprotected Port
+Finding Type: Recon:EC2/PortProbeUnprotectedPort
+Instance ID: i-047bd750c20294329
+Time Detected: 4 hours ago
+Details: This finding indicates that an instance is being probed for open ports that are not adequately protected. Continuous monitoring and implementing security measures, such as configuring security groups, are recommended to mitigate potential risks.
+
+Low Severity: SSH Brute Force Attempt
+Finding Type: UnauthorizedAccess:EC2/SSHBruteForce
+Instance ID: i-047bd750c20294329
+Time Detected: 4 hours ago
+Details: GuardDuty detected multiple SSH brute force attempts targeting this instance. This suggests that an unauthorized entity is attempting to gain access via SSH. It's crucial to implement measures such as changing the default SSH port, restricting access through security groups, and enabling multi-factor authentication (MFA) for enhanced security.
+
+High Severity: SSH Brute Force Attempt
+Finding Type: UnauthorizedAccess:EC2/SSHBruteForce
+Instance ID: i-0e63fd34bbdeecdf0
+Time Detected: 4 hours ago
+Details: This high-severity finding indicates a significant number of SSH brute force attempts on a different instance. Given the high volume of attempts (8), immediate action is required to secure the instance. Recommendations include reviewing and tightening security group rules, enabling VPC flow logs for monitoring, and considering the implementation of intrusion detection systems.

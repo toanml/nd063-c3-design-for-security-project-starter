@@ -1,0 +1,15 @@
+cand-c3-free-recipes-293566409544
+cand-c3-secret-recipes-293566409544
+cand-c3-vpc-flow-logs-293566409544
+
+AppIp: ec2-34-193-182-205.compute-1.amazonaws.com
+
+AppUrl: c1-web-service-alb-426819186.us-east-1.elb.amazonaws.com
+
+AtkIp: ec2-34-201-13-150.compute-1.amazonaws.com
+\
+aws s3 ls  s3://cand-c3-secret-recipes-293566409544/ --region us-east-1
+aws s3 cp s3://cand-c3-secret-recipes-293566409544/secret_recipe.txt  .  --region us-east-1
+
+ssh -i /Users/toanml/_u/nd063-c3-design-for-security-project-starter/n063-keypair.pem ubuntu@ec2-34-193-182-205.compute-1.amazonaws.com
+

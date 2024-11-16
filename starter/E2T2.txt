@@ -1,3 +1,26 @@
-Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+Critical Vulnerabilities
+- IAM.6 & IAM.9: Enable Hardware MFA for the Root User
+-- Action: Set up Multi-Factor Authentication (MFA) on the root user account. Use a hardware MFA device for enhanced security.
 
-Bonus - provide recommendations on how to remediate the vulnerabilities.
+High Vulnerabilities
+- EC2.13 & EC2.14: Restrict Ingress Rules for Security Groups
+-- Action: Modify security group rules to disallow ingress from 0.0.0.0/0 (all IPs) to ports 22 (SSH) and 3389 (RDP). Limit access to specific IP addresses or ranges that require access.
+- EC2.2: Restrict VPC Default Security Groups
+-- Action: Update the default security group to deny all inbound and outbound traffic by default. Create specific security groups for instances with only the necessary rules.
+- CloudTrail.1: Enable and Configure CloudTrail
+-- Action: Enable AWS CloudTrail and configure it to have at least one multi-region trail that captures both read and write management events. Ensure that the logs are stored securely.
+
+Medium Vulnerabilities
+- IAM.11 to IAM.15: Strengthen IAM Password Policy
+-- Actions:
+--- Require at least one uppercase letter, one lowercase letter, one symbol, one number, and a minimum password length of 14 characters.
+--- Prevent password reuse by enforcing a policy that disallows the last 5 passwords.
+--- Set a password expiration policy to require password changes every 90 days.
+
+Low Vulnerabilities
+- IAM.16: Prevent Password Reuse
+-- Action: Implement a password policy that tracks previously used passwords to prevent reuse.
+- IAM.17: Set Password Expiration Policy
+-- Action: Enforce a policy that requires passwords to expire within 90 days.
+- IAM.18: Create a Support Role for Incident Management
+-- Action: Create a dedicated IAM role for managing incidents with AWS Support, ensuring it has appropriate permissions while following the principle of least privilege.

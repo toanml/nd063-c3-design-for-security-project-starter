@@ -2,4 +2,16 @@
 
 # Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
 
+Preventing SSH Brute Force Attacks
+To prevent SSH brute force attacks, we can:
+
+- Restrict Security Groups: Limit SSH access to the Web Service instance from a bastion host, requiring attackers to first compromise the bastion host. 
+-- Remove the rule allow SSH port 22 from any source
+- Apply Least Privilege: Restrict outbound SSH connections on the attacker EC2 instance if they are unnecessary.
+-- Remove the rule allow all trafic from any source
+- Use Immutable Instances: Disable all SSH connections to EC2 instances, deploying new machine images for changes and terminating the old instances.
+
 # Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+Securing the Secret Recipe S3 Bucket
+First, turn off public access to the secret recipe S3 bucket. Since the accessing instance was within our VPC, we need further security by applying a bucket policy that restricts read access to a specific security group. This group should include only authorized users and resources that need access to the bucket.

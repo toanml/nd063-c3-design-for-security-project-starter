@@ -1,13 +1,20 @@
 # Identify tools that will allow you to do the following:
 
 ## Scan infrastructure as code templates
+Open policy agent / Regula
 
 ### Example vulnerability
+Allow full access permission policy for resources
 
 ##Scan AMI’s or containers for OS vulnerabilities
+Trivy, Aquasec
 
 ### Example vulnerability
+Out of date frameworks, missing OS patch
 
 ##Scan an AWS environment for cloud configuration vulnerabilities
+AWS Inspector, Config, GuardDuty
 
 ### Example vulnerability
+Changing in network secyrity group that allow insecure source/port
+Detect abnormal requests
